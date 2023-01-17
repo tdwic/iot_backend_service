@@ -19,6 +19,7 @@ namespace IoTBackend.Services
 
         public async Task<List<Playlist>> GetAsync()
         {
+
             return await _playlistCollection.Find(new BsonDocument()).ToListAsync();
         }
         public async Task CreateAsync(Playlist playlist)
