@@ -1,4 +1,5 @@
-﻿using IoTBackend.Interfaces;
+﻿using IoTBackend.Common;
+using IoTBackend.Interfaces;
 using IoTBackend.Mode;
 using IoTBackend.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -18,29 +19,16 @@ namespace IoTBackend.Controllers
 
         [HttpGet]
         [Route("GetDistanceDetails")]
-        public async Task<IActionResult> GetDistanceDetails()
+        public async Task<ResponseModel> GetDistanceDetails()
         {
             return await distanceDataService.GetDistanceDetails();
         }
 
         [HttpPost]
         [Route("SaveDistanceDetails")]
-        public async Task<IActionResult> SaveDistanceDetails([FromBody] DistanceDataSaveModel distanceDataSaveModel)
+        public async Task<ResponseModel> SaveDistanceDetails([FromBody] DistanceDataSaveRequestModel distanceDataSaveRequestModel)
         {
-            return await distanceDataService.SaveDistanceDetails(distanceDataSaveModel);
+            return await distanceDataService.SaveDistanceDetails(distanceDataSaveRequestModel);
         }
-
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> AddToPlaylist(string id, [FromBody] string movieId)
-        //{
-        //    return null;
-        //}
-
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(string id)
-        //{
-        //    return null;
-        //}
-
     }
 }

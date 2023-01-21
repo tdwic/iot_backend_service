@@ -1,10 +1,9 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using System.Text.Json.Serialization;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 
-namespace IoTBackend.Mode
+namespace IoTBackend.Models
 {
-    public class DistanceDataSaveModel
+    public class DistanceDataFetchModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
