@@ -1,5 +1,8 @@
+using IoTBackend.Common;
+using IoTBackend.Interfaces;
 using IoTBackend.Models;
 using IoTBackend.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace IoTBackend
 {
@@ -10,15 +13,16 @@ namespace IoTBackend
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
-            builder.Services.AddSingleton<MongoDBService>();
+            builder.Services.AddTransient<IMongoDbRepository, MongoDbRepository>();
+            builder.Services.AddTransient<IMongoDbContext, MongoDbContext>();
 
-            // Add services to the container.
+            builder.Services.AddTransient<IDistanceDataService, DistanceDataService>();
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
 
             var app = builder.Build();
 
